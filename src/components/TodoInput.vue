@@ -9,27 +9,40 @@
     <span class="addContainer" v-on:click="addTodo">
       <font-awesome-icon class="addBtn" icon="plus" aria-hidden="true" />
     </span>
+
+    <modal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">경고</h3>
+      <span slot="body" @click="showModal = false">할 일을 입력해주세요.</span>
+    </modal>
   </div>
 </template>
 
 <script>
+import Modal from "./common/Modal.vue";
+
 export default {
   data() {
     return {
-      newTodoItem: ""
+      newTodoItem: "",
+      showModal: false
     };
   },
   methods: {
     addTodo() {
       if (this.newTodoItem !== "") {
         let value = this.newTodoItem && this.newTodoItem.trim();
-        localStorage.setItem(value, value);
+        this.$emit("addTodo", value);
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
     },
     clearInput() {
       this.newTodoItem = "";
     }
+  },
+  components: {
+    Modal: Modal
   }
 };
 </script>

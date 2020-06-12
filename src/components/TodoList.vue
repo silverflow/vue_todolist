@@ -1,36 +1,23 @@
 <template>
   <section>
-    <ul>
-      <li v-for="todoItem in todoItems" v-bind:key="todoItem" class="shadow">
+    <transition-group name="list" tag="ul">
+      <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem" class="shadow">
         <font-awesome-icon class="checkBtn" icon="check" aria-hidden="true" />
         {{ todoItem }}
         <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
           <font-awesome-icon icon="trash" aria-hidden="true" />
         </span>
       </li>
-    </ul>
+    </transition-group>
   </section>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      todoItems: []
-    };
-  },
-  created() {
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i) != "loglevel:webpack-dev-server") {
-          this.todoItems.push(localStorage.key(i));
-        }
-      }
-    }
-  },
+  props: ["propsdata"],
   methods: {
-    removeTodo() {
-      console.log("클릭확인용");
+    removeTodo(todoItem, index) {
+      this.$emit("removeTodo", todoItem, index);
     }
   }
 };
@@ -66,5 +53,15 @@ li {
 .removeBtn {
   margin-left: auto;
   color: #de4343;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
