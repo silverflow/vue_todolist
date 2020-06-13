@@ -12,7 +12,8 @@
 
     <modal v-if="showModal" @close="showModal = false">
       <h3 slot="header">경고</h3>
-      <span slot="body" @click="showModal = false">할 일을 입력해주세요.</span>
+      <span slot="body">할 일을 입력해주세요.</span>
+      <button slot="footer" @click="showModal = false">닫기</button>
     </modal>
   </div>
 </template>
