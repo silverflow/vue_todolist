@@ -39,6 +39,8 @@ li {
   margin: 0.5rem 0;
   padding: 0 0.9rem;
   background: white;
+  border-style: solid;
+  border-color: #6478fb;
   border-radius: 5px;
   vertical-align: middle;
   align-items: center;

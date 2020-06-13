@@ -1,6 +1,6 @@
 <template>
-  <div class="clearAllContainer shadow">
-    <span class="clearAllBtn" @click="clearTodo">Clear All</span>
+  <div class="clearAllContainer" @click="clearTodo">
+    <span class="clearAllBtn">Clear All</span>
   </div>
 </template>
 
@@ -19,13 +19,14 @@ export default {
   width: 8.5rem;
   height: 50px;
   line-height: 50px;
-  background-color: white;
+  background-color: red;
   border-radius: 5px;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .clearAllBtn {
-  color: #e20303;
+  color: white;
   display: black;
 }
 </style>
